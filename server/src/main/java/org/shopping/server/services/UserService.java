@@ -2,11 +2,13 @@ package org.shopping.server.services;
 
 import org.shopping.server.models.User;
 import org.shopping.server.repositories.UserRepository;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+@Service
 public class UserService {
     private final UserRepository repository;
 
