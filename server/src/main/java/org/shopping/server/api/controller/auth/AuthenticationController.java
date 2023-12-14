@@ -5,9 +5,11 @@ import org.shopping.server.api.model.LoginBody;
 import org.shopping.server.api.model.LoginResponse;
 import org.shopping.server.api.model.RegistrationBody;
 import org.shopping.server.exception.UserAlreadyExistsException;
+import org.shopping.server.model.LocalUser;
 import org.shopping.server.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -30,7 +32,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity loginUser(@Valid @RequestBody LoginBody loginBody) {
+    public ResponseEntity<LoginResponse> loginUser(@Valid @RequestBody LoginBody loginBody) {
         String jwt = userService.loginUser(loginBody);
 
         if (jwt == null) {
@@ -40,5 +42,10 @@ public class AuthenticationController {
             response.setJwt(jwt);
             return ResponseEntity.ok(response);
         }
+    }
+
+    @GetMapping("/me")
+    public LocalUser getLoggedInUserProfile(@AuthenticationPrincipal LocalUser user) {
+        return user;
     }
 }
