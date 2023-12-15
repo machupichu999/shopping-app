@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import org.shopping.server.api.model.LoginBody;
 import org.shopping.server.api.model.LoginResponse;
 import org.shopping.server.api.model.RegistrationBody;
+import org.shopping.server.api.model.ProfileInfoBody;
 import org.shopping.server.exception.UserAlreadyExistsException;
 import org.shopping.server.model.LocalUser;
 import org.shopping.server.service.UserService;
@@ -47,5 +48,20 @@ public class AuthenticationController {
     @GetMapping("/me")
     public LocalUser getLoggedInUserProfile(@AuthenticationPrincipal LocalUser user) {
         return user;
+    }
+
+    @DeleteMapping("/me")
+    public ResponseEntity deleteUser(@AuthenticationPrincipal LocalUser user) {
+        userService.deleteUser(user.getId());
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/me")
+    public ResponseEntity updateUser(
+            @AuthenticationPrincipal LocalUser user,
+            @RequestBody ProfileInfoBody profileInfoBody
+    ) {
+        userService.updateUser(user, profileInfoBody);
+        return ResponseEntity.ok().build();
     }
 }

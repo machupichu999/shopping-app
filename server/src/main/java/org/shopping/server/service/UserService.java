@@ -2,6 +2,7 @@ package org.shopping.server.service;
 
 import org.shopping.server.api.model.LoginBody;
 import org.shopping.server.api.model.RegistrationBody;
+import org.shopping.server.api.model.ProfileInfoBody;
 import org.shopping.server.model.LocalUser;
 import org.shopping.server.model.dao.LocalUserDAO;
 import org.springframework.stereotype.Service;
@@ -52,5 +53,25 @@ public class UserService {
         }
 
         return null;
+    }
+
+    public void updateUser(LocalUser user, ProfileInfoBody profileInfoBody) {
+        if (profileInfoBody.getEmail() != null) {
+            user.setEmail((String) profileInfoBody.getEmail());
+        }
+
+        if (profileInfoBody.getFirstName() != null) {
+            user.setFirstName((String) profileInfoBody.getFirstName());
+        }
+
+        if (profileInfoBody.getLastName() != null) {
+            user.setLastName((String) profileInfoBody.getLastName());
+        }
+
+        localUserDAO.save(user);
+    }
+
+    public void deleteUser(Long id) {
+        localUserDAO.deleteById(id);
     }
 }

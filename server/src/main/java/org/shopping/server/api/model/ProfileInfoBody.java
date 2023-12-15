@@ -1,8 +1,6 @@
 package org.shopping.server.api.model;
 
 import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
@@ -11,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class RegistrationBody {
+public class ProfileInfoBody {
     @NotNull
     @NotBlank
     @Size(min = 4, max = 40)
@@ -21,11 +19,6 @@ public class RegistrationBody {
     @NotBlank
     @Email
     private String email;
-
-    @NotNull
-    @NotBlank
-    @Size(min = 8)
-    private String password;
 
     @NotNull
     @NotBlank

@@ -38,4 +38,9 @@ public class LocalUser {
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Address> addresses = new ArrayList<>();
 
+    @JsonIgnore
+    @OneToMany(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "web_order_id")
+    private List<WebOrder> orders;
+
 }
