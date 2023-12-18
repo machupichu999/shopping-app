@@ -21,11 +21,14 @@ public class Address {
     @Column(name = "address_line_2", length = 512)
     private String addressLine2;
 
-    @Column(name = "city", nullable = false)
+    @Column(name = "city", nullable = false, length = 75)
     private String city;
 
     @Column(name = "country", nullable = false, length = 75)
     private String country;
+
+    @Column(name = "zip_code", nullable = false, length = 10)
+    private String zipCode;
 
     @JsonIgnore
     @ManyToOne(optional = false)
