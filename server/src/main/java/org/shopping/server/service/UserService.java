@@ -41,18 +41,18 @@ public class UserService {
         return localUserDAO.save(user);
     }
 
-    public String loginUser(LoginBody loginBody) {
+    public Optional<String> loginUser(LoginBody loginBody) {
         Optional<LocalUser> opUser = localUserDAO.findByUsernameIgnoreCase(loginBody.getUsername());
 
         if (opUser.isPresent()) {
             LocalUser user = opUser.get();
 
             if (encryptionService.verifyPassword(loginBody.getPassword(), user.getPassword())) {
-                return jwtService.generateJWT(user);
+                return Optional.ofNullable(jwtService.generateJWT(user));
             }
         }
 
-        return null;
+        return Optional.empty();
     }
 
     public void updateUser(LocalUser user, ProfileInfoBody profileInfoBody) {
