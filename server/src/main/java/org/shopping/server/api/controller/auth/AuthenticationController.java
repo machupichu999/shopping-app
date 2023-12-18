@@ -61,7 +61,7 @@ public class AuthenticationController {
     @PatchMapping("/me")
     public ResponseEntity updateUser(
             @AuthenticationPrincipal LocalUser user,
-            @RequestBody ProfileInfoBody profileInfoBody
+            @Valid @RequestBody ProfileInfoBody profileInfoBody
     ) {
         userService.updateUser(user, profileInfoBody);
         return ResponseEntity.ok().build();
