@@ -1,4 +1,4 @@
-package org.shopping.server.api.controller.order;
+package org.shopping.server.api.controller.orders;
 
 import org.shopping.server.model.LocalUser;
 import org.shopping.server.model.WebOrder;

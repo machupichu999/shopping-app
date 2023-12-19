@@ -9,8 +9,6 @@ import java.util.Optional;
 
 public interface AddressDAO extends ListCrudRepository<Address, Long> {
 
-    Optional<Address> findByUser(LocalUser user);
-
     void deleteByUser(LocalUser user);
 
     List<Address> findAllByUser(LocalUser user);

@@ -1,4 +1,4 @@
-package org.shopping.server.api.controller.product;
+package org.shopping.server.api.controller.products;
 
 import org.shopping.server.model.Product;
 import org.shopping.server.service.ProductService;

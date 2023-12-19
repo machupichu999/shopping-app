@@ -7,6 +7,7 @@ import org.shopping.server.model.dao.AddressDAO;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class AddressService {
@@ -34,5 +35,9 @@ public class AddressService {
 
     public List<Address> getAddresses(LocalUser user) {
         return addressDAO.findAllByUser(user);
+    }
+
+    public Optional<Address> getAddressById(long id) {
+        return addressDAO.findById(id);
     }
 }
